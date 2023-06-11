@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Weather_API from '../Keys';
+import Forecast from './Forecast';
 
 function WeatherHead(props) {
 
     
-    const [data,setData]=useState(null);
+    const [data,setData]=useState('');
     const [err,setError]=useState(false);
     const [time,setTime]=useState({})
 
@@ -99,7 +100,7 @@ function WeatherHead(props) {
                     </div>
                 </div>
             </div>
-            <div className='grid gap-16 grid-cols-3 m-4 p-8 shadow-2xl rounded-lg backdrop-opacity-25 shadow-slate-900 text-slate-300'>
+            <div className='grid gap-16 grid-cols-3 m-4 p-8 shadow-2xl rounded-lg bg-opacity-10 shadow-slate-900 text-slate-300 bg-slate-50'>
                 <div >
                     <div className='text-center'>
                         <span>{data.forecast.forecastday[0].day.maxtemp_c}</span><span>°</span>
@@ -150,8 +151,13 @@ function WeatherHead(props) {
                 </div>
             </div>
         </div>
+
+        <Forecast className=" container mx-auto" forecast_data={data.forecast.forecastday} f_time={time}/>
       </div>
 }
+        
+            
+        
     </div>
   )
 }
