@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Forecast(props) {
+
+    const [forecastdays,setForecastdays]=useState({day1:undefined,day2:undefined,day3:undefined})
+
    const info=props.forecast_data
+
+    useEffect(()=>{
+      const Days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const date=new Date();
+      const day=date.getDay()
+      setForecastdays({
+        day1:Days[day],
+        day2:Days[day+1],
+        day3:Days[day+2]
+      })
+
+    })
+
   return (
     <div className='p-4 bg-slate-50 rounded-xl bg-opacity-10 shadow-sm shadow-gray-700'>
      <div className='text-3xl font-medium text-slate-300'>Forecast</div>
